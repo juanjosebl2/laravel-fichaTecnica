@@ -18,6 +18,12 @@ return new class extends Migration
             $table->string('titulo');
             $table->text('contenido');
             $table->timestamps();
+
+            $table->foreignId('id_user')
+                ->nullable()
+                ->constrained('users')
+                ->cascadeOnUpdate()
+                ->nullOnDelete();
         });
     }
 

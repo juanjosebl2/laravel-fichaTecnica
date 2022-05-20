@@ -9,4 +9,19 @@ class Ejercicio extends Model
 {
     use HasFactory;
     protected $fillable = ['titulo','contenido'];
+
+    //Un ejercicio tiene muchas incidencias
+    public function incidencias(){
+        return $this->hasMany(Incidencia::class, 'id');
+    }
+
+    //Un ejercicio pertenece a un proyecto 
+    public function ejercicios_proyecto(){
+        return $this->belongsTo(Ejercicio::class,'id_ejercicio');
+    }
+
+    //Un ejercicio pertenece a un usuario 
+    public function ejercicios_usuario(){
+        return $this->belongsTo(User::class,'id_user');
+    }
 }

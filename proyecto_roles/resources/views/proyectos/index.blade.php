@@ -20,7 +20,8 @@
                                 <thead style="background-color:#6777ef">                                     
                                     <th style="display: none;">ID</th>
                                     <th style="color:#fff;">Titulo</th>
-                                    <th style="color:#fff;">Contenido</th>                                    
+                                    <th style="color:#fff;">Contenido</th>
+                                    <th style="color:#fff;">Usuario relacionado</th>                                      
                                     <th style="color:#fff;">Acciones</th>                                                                   
                               </thead>
                               <tbody>
@@ -29,6 +30,7 @@
                                 <td style="display: none;">{{ $proyecto->id }}</td>                                
                                 <td>{{ $proyecto->titulo }}</td>
                                 <td>{{ $proyecto->contenido }}</td>
+                                <td>{{ $proyecto->users->name }}</td>
                                 <td>
                                     <form action="{{ route('proyectos.destroy',$proyecto->id) }}" method="POST">                                        
                                         @can('editar-proyecto')

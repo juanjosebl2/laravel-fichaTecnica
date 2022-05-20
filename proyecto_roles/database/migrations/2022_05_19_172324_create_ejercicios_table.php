@@ -18,6 +18,18 @@ return new class extends Migration
             $table->string('titulo');
             $table->text('contenido');
             $table->timestamps();
+
+            $table->foreignId('id_user')
+                ->nullable()
+                ->constrained('users')
+                ->cascadeOnUpdate()
+                ->nullOnDelete();
+                
+            $table->foreignId('id_proyecto')
+                ->nullable()
+                ->constrained('proyectos')
+                ->cascadeOnUpdate()
+                ->nullOnDelete();
         });
     }
 

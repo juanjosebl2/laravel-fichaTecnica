@@ -20,7 +20,8 @@
                                 <thead style="background-color:#6777ef">                                     
                                     <th style="display: none;">ID</th>
                                     <th style="color:#fff;">Titulo</th>
-                                    <th style="color:#fff;">Contenido</th>                                    
+                                    <th style="color:#fff;">Contenido</th>
+                                    <th style="color:#fff;">Ejercicios asociado</th>                                    
                                     <th style="color:#fff;">Acciones</th>                                                                   
                               </thead>
                               <tbody>
@@ -29,6 +30,7 @@
                                 <td style="display: none;">{{ $incidencia->id }}</td>                                
                                 <td>{{ $incidencia->titulo }}</td>
                                 <td>{{ $incidencia->contenido }}</td>
+                                <td>{{ $incidencia->ejercicios->titulo }}</td>
                                 <td>
                                     <form action="{{ route('incidencias.destroy',$incidencia->id) }}" method="POST">                                        
                                         @can('editar-incidencia')

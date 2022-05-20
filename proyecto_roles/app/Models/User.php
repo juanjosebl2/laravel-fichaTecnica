@@ -14,6 +14,16 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
+    
+    //Un usuario tiene muchos proyectos
+    public function proyectos(){
+        return $this->hasMany(Proyecto::class, 'id');
+    }
+
+    //Un usuario tiene muchos ejercicios
+    public function ejercicios(){
+        return $this->hasMany(Ejericicio::class, 'id');
+    }
 
     /**
      * The attributes that are mass assignable.
