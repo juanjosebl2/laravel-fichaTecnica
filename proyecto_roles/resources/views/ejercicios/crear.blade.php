@@ -34,11 +34,11 @@
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                                     
-                                <div class="form-floating">
+                            <div class="form-floating">
                                 <textarea class="form-control" name="contenido" style="height: 100px"></textarea>
                                 <label for="contenido">Contenido</label>
-                                </div>
-                            
+                            </div>
+
                             <button type="submit" class="btn btn-primary">Guardar</button>                            
                         </div>
                     </form>

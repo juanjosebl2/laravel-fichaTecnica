@@ -30,7 +30,13 @@
                                 <td style="display: none;">{{ $incidencia->id }}</td>                                
                                 <td>{{ $incidencia->titulo }}</td>
                                 <td>{{ $incidencia->contenido }}</td>
+
+                                @if($incidencia->ejercicios)
                                 <td>{{ $incidencia->ejercicios->titulo }}</td>
+                                @else
+                                <td></td>
+                                @endif
+                                
                                 <td>
                                     <form action="{{ route('incidencias.destroy',$incidencia->id) }}" method="POST">                                        
                                         @can('editar-incidencia')

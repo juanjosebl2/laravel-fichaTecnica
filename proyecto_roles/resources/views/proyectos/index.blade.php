@@ -30,7 +30,13 @@
                                 <td style="display: none;">{{ $proyecto->id }}</td>                                
                                 <td>{{ $proyecto->titulo }}</td>
                                 <td>{{ $proyecto->contenido }}</td>
+
+                                @if($proyecto->users)
                                 <td>{{ $proyecto->users->name }}</td>
+                                @else
+                                <td></td>
+                                @endif
+   
                                 <td>
                                     <form action="{{ route('proyectos.destroy',$proyecto->id) }}" method="POST">                                        
                                         @can('editar-proyecto')

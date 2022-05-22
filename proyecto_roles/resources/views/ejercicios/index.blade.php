@@ -31,8 +31,19 @@
                                 <td style="display: none;">{{ $ejercicio->id }}</td>                                
                                 <td>{{ $ejercicio->titulo }}</td>
                                 <td>{{ $ejercicio->contenido }}</td>
+
+                                @if($ejercicio->proyectos)
                                 <td>{{ $ejercicio->proyectos->titulo }}</td>
+                                @else
+                                <td></td>
+                                @endif
+
+                                @if($ejercicio->users)
                                 <td>{{ $ejercicio->users->name }}</td>
+                                @else
+                                <td></td>
+                                @endif
+
                                 <td>
                                     <form action="{{ route('ejercicios.destroy',$ejercicio->id) }}" method="POST">                                        
                                         @can('editar-ejercicio')

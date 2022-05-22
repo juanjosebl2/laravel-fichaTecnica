@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Incidencia;
+use App\Models\Ejercicio;
 
 class IncidenciaController extends Controller
 {
@@ -23,7 +24,7 @@ class IncidenciaController extends Controller
      */
     public function index()
     {
-        $incidencias = Incidencia::paginate(5);
+        $incidencias = Incidencia::paginate(10);
         return view('incidencias.index', compact('incidencias'));
     }
 
@@ -34,7 +35,8 @@ class IncidenciaController extends Controller
      */
     public function create()
     {
-        return view('incidencias.crear');
+        $ejercicios = Ejercicio::pluck('titulo','id')->all();
+        return view('incidencias.crear', compact('ejercicios'));
     }
 
     /**
@@ -50,7 +52,13 @@ class IncidenciaController extends Controller
             'contenido' => 'required'
         ]);
 
-        Incidencia::create($request->all());
+        $nuevaIncidencia = new Incidencia();
+        $nuevaIncidencia->titulo = $request->input('titulo');
+        $nuevaIncidencia->contenido = $request->input('contenido');
+        $nuevaIncidencia->id_ejercicio = $request->input('id_ejercicio');
+        $nuevaIncidencia->save();
+        //dd($nuevaIncidencia);
+
         return redirect()->route('incidencias.index');
     }
 
@@ -73,7 +81,8 @@ class IncidenciaController extends Controller
      */
     public function edit(Incidencia $incidencia)
     {
-        return view('incidencias.editar', compact('incidencia'));
+        $ejercicios = Ejercicio::pluck('titulo','id')->all();
+        return view('incidencias.editar', compact('incidencia','ejercicios'));
     }
 
     /**
@@ -90,7 +99,11 @@ class IncidenciaController extends Controller
             'contenido' => 'required'
         ]);
 
-        $incidencia->update($request->all());
+        $incidencia->titulo = $request->input('titulo');
+        $incidencia->contenido = $request->input('contenido');
+        $incidencia->id_ejercicio = $request->input('id_ejercicio');
+        $incidencia->save();
+        
         return redirect()->route('incidencias.index');
     }
 
