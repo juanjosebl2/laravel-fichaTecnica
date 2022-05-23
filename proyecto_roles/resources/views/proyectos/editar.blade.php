@@ -36,11 +36,18 @@
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                                     
-                                <div class="form-floating">
+                            <div class="form-floating">
                                 <label for="contenido">Contenido</label>
                                 <textarea class="form-control" name="contenido" style="height: 100px">{{ $proyecto->contenido }}</textarea>                                
-                                
+                            </div>
+
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label for="">Asignar ejercicio</label>
+                                    {!! Form::select('id_user', $users, null, array('class'=>'form-control')) !!}
                                 </div>
+                            </div>
+
                             <br>
                             <button type="submit" class="btn btn-primary">Guardar</button>                            
                         </div>

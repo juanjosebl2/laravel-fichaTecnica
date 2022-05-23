@@ -32,17 +32,17 @@
                                 <td>{{ $ejercicio->titulo }}</td>
                                 <td>{{ $ejercicio->contenido }}</td>
 
-                                @if($ejercicio->proyectos)
-                                <td>{{ $ejercicio->proyectos->titulo }}</td>
-                                @else
-                                <td></td>
+                                <td>
+                                @if(!empty($ejercicio->proyectos))
+                                    {{ $ejercicio->proyectos->titulo }}
                                 @endif
+                                </td>
 
-                                @if($ejercicio->users)
-                                <td>{{ $ejercicio->users->name }}</td>
-                                @else
-                                <td></td>
+                                <td>
+                                @if(!empty($ejercicio->users))
+                                    {{ $ejercicio->users->name }}
                                 @endif
+                                </td>
 
                                 <td>
                                     <form action="{{ route('ejercicios.destroy',$ejercicio->id) }}" method="POST">                                        

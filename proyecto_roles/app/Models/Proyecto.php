@@ -16,7 +16,7 @@ class Proyecto extends Model
     }
 
     //Un ejercicio pertenece a un usuario 
-    public function usuarios(){
+    public function users(){
         return $this->belongsTo(User::class,'id_user');
     }
 }

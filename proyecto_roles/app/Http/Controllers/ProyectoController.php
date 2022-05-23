@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Proyecto;
+use App\Models\User;
 
 class ProyectoController extends Controller
 {
@@ -23,7 +24,7 @@ class ProyectoController extends Controller
      */
     public function index()
     {
-        $proyectos = Proyecto::paginate(5);
+        $proyectos = Proyecto::paginate(10);
         return view('proyectos.index', compact('proyectos'));
     }
 
@@ -34,7 +35,8 @@ class ProyectoController extends Controller
      */
     public function create()
     {
-        return view('proyectos.crear');
+        $users = User::pluck('name','id')->all();
+        return view('proyectos.crear', compact('users'));
     }
 
     /**
@@ -50,7 +52,12 @@ class ProyectoController extends Controller
             'contenido' => 'required'
         ]);
 
-        Proyecto::create($request->all());
+        $nuevoProyecto = new Proyecto();
+        $nuevoProyecto->titulo = $request->input('titulo');
+        $nuevoProyecto->contenido = $request->input('contenido');
+        $nuevoProyecto->id_user = $request->input('id_user');
+        $nuevoProyecto->save();
+
         return redirect()->route('proyectos.index');
     }
 
@@ -73,7 +80,8 @@ class ProyectoController extends Controller
      */
     public function edit(Proyecto $proyecto)
     {
-        return view('proyectos.editar', compact('proyecto'));
+        $users = User::pluck('name','id')->all();
+        return view('proyectos.editar', compact('proyecto','users'));
     }
 
     /**
@@ -90,7 +98,11 @@ class ProyectoController extends Controller
             'contenido' => 'required'
         ]);
 
-        $proyecto->update($request->all());
+        $proyecto->titulo = $request->input('titulo');
+        $proyecto->contenido = $request->input('contenido');
+        $proyecto->id_user = $request->input('id_user');
+        $proyecto->save();
+
         return redirect()->route('proyectos.index');
     }
 

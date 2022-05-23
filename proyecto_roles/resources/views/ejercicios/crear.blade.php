@@ -39,6 +39,20 @@
                                 <label for="contenido">Contenido</label>
                             </div>
 
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label for="">Asignar user</label>
+                                    {!! Form::select('id_user', $users, null, array('class'=>'form-control')) !!}
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label for="">Asignar proyecto</label>
+                                    {!! Form::select('id_proyecto', $proyectos, null, array('class'=>'form-control')) !!}
+                                </div>
+                            </div>
+
                             <button type="submit" class="btn btn-primary">Guardar</button>                            
                         </div>
                     </form>

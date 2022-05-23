@@ -16,12 +16,12 @@ class Ejercicio extends Model
     }
 
     //Un ejercicio pertenece a un proyecto 
-    public function ejercicios_proyecto(){
-        return $this->belongsTo(Ejercicio::class,'id_ejercicio');
+    public function proyectos(){
+        return $this->belongsTo(Ejercicio::class,'id_proyecto');
     }
 
     //Un ejercicio pertenece a un usuario 
-    public function ejercicios_usuario(){
+    public function users(){
         return $this->belongsTo(User::class,'id_user');
     }
 }

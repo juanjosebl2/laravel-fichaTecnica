@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Ejercicio;
+use App\Models\User;
+use App\Models\Proyecto;
 
 class EjercicioController extends Controller
 {
@@ -23,7 +25,7 @@ class EjercicioController extends Controller
      */
     public function index()
     {
-        $ejercicios = Ejercicio::paginate(5);
+        $ejercicios = Ejercicio::paginate(10);
         return view('ejercicios.index', compact('ejercicios'));
     }
 
@@ -34,7 +36,9 @@ class EjercicioController extends Controller
      */
     public function create()
     {
-        return view('ejercicios.crear');
+        $users = User::pluck('name','id')->all();
+        $proyectos = Proyecto::pluck('titulo','id')->all();
+        return view('ejercicios.crear', compact('users','proyectos'));
     }
 
     /**
@@ -50,7 +54,13 @@ class EjercicioController extends Controller
             'contenido' => 'required'
         ]);
 
-        Ejercicio::create($request->all());
+        $nuevoEjercicio = new Ejercicio();
+        $nuevoEjercicio->titulo = $request->input('titulo');
+        $nuevoEjercicio->contenido = $request->input('contenido');
+        $nuevoEjercicio->id_user = $request->input('id_user');
+        $nuevoEjercicio->id_proyecto = $request->input('id_proyecto');
+        $nuevoEjercicio->save();
+
         return redirect()->route('ejercicios.index');
     }
 
@@ -73,7 +83,9 @@ class EjercicioController extends Controller
      */
     public function edit(Ejercicio $ejercicio)
     {
-        return view('ejercicios.editar', compact('ejercicio'));
+        $users = User::pluck('name','id')->all();
+        $proyectos = Proyecto::pluck('titulo','id')->all();
+        return view('ejercicios.editar', compact('ejercicio','users','proyectos'));
     }
 
     /**
@@ -90,7 +102,12 @@ class EjercicioController extends Controller
             'contenido' => 'required'
         ]);
 
-        $ejercicio->update($request->all());
+        $ejercicio->titulo = $request->input('titulo');
+        $ejercicio->contenido = $request->input('contenido');
+        $ejercicio->id_user = $request->input('id_user');
+        $ejercicio->id_proyecto = $request->input('id_proyecto');
+        $ejercicio->save();
+
         return redirect()->route('ejercicios.index');
     }
 

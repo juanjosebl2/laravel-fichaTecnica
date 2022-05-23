@@ -31,11 +31,11 @@
                                 <td>{{ $proyecto->titulo }}</td>
                                 <td>{{ $proyecto->contenido }}</td>
 
-                                @if($proyecto->users)
-                                <td>{{ $proyecto->users->name }}</td>
-                                @else
-                                <td></td>
+                                <td>
+                                @if(!empty($proyecto->users))
+                                    {{ $proyecto->users->name }}
                                 @endif
+                                </td>
    
                                 <td>
                                     <form action="{{ route('proyectos.destroy',$proyecto->id) }}" method="POST">                                        
