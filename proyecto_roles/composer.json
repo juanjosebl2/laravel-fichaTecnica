@@ -9,6 +9,7 @@
         "guzzlehttp/guzzle": "^7.2",
         "infyomlabs/laravel-ui-stisla": "^4.0",
         "laravel/framework": "^9.11",
+        "laravel/legacy-factories": "^1.3",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
         "laravelcollective/html": "^6.3",

@@ -15,7 +15,7 @@ class Proyecto extends Model
         return $this->hasMany(Ejercicio::class, 'id');
     }
 
-    //Un ejercicio pertenece a un usuario 
+    //Un proyecto pertenece a un usuario 
     public function users(){
         return $this->belongsTo(User::class,'id_user');
     }
